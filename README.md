@@ -149,7 +149,7 @@ for (var i = 0; i < STRIPES/2; i++) {
 }    
 ```
 下面的性能测试用例分别用上边两种方法绘制了一副交错的细条纹图案：
-![交错渲染对比](http://img.my.csdn.net/uploads/201203/29/1333008831_6552.png)
+![交错渲染对比](http://vlambda.com/img?url=http://mmbiz.qpic.cn/mmbiz/meG6Vo0MeviasMJGOO597rwXeuicNmMW7No21Nibmt0ubcQDYueticgPGQ9kD5g47hGAw02T99RibRVibBiatePnBrRuQ/0?wx_fmt=jpeg)
 正如我们预期的，交错改变状态的方法要慢的多，原因是变化状态机是有额外开销的。
 
 
@@ -179,7 +179,6 @@ function getInt(num){
 
 ```
 #### requestAnimationFrame
-这个相信大家都很熟悉了，做动画的最佳循环方法。什么意思呢？就是前面提到的最佳的人眼感受是16.67ms一帧。
 然而不同都浏览器repaint都时间是统一都。但是这个方法确能告诉我们什么时候重绘，这样就不会过度绘制、掉帧、卡顿。
 它的优势包括：
 - 在用户没有盯着游戏时减少客户机上的工作量
