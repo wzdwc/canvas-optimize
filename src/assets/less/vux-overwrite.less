@@ -1,0 +1,105 @@
+body{
+    .weui-loadmore{
+        font-size: inherit;
+    }
+    .weui-loading{
+        width: 40/@base;
+        height: 40/@base;
+    }
+    .weui-cells{
+        font-size: inherit;
+        line-height: inherit;
+        margin-bottom: 20/@base;
+        margin-top: 0;
+    }
+    .weui-cell, .vux-selector.weui-cell_select{
+        @padding: @global-padding*.8 @global-padding;
+        padding: @padding;
+        &:before{
+            left: @global-padding;
+        }
+    }
+    .weui-select{
+        line-height: 44/@base;
+        height: 44/@base;
+    }
+    .vux-selector option{
+        [data-dpr="2"] &{
+            zoom: .5;
+        }
+    }
+    .weui-label{
+        width: auto;
+        margin-right: 1em;
+    }
+    .vux-popup-picker-container, .dp-container{
+        [data-dpr="2"] & {
+            -webkit-text-size-adjust: auto;
+            zoom: 2;
+        }
+    }
+    .weui-switch,.weui-icon{
+        [data-dpr="2"] &{
+            zoom: 1.6;
+        }
+    }
+    // .vux-picker{
+    //     &>.vux-flexbox{
+    //         [data-dpr="2"] & {
+    //             -webkit-text-size-adjust: auto;
+    //             zoom: 2;
+    //         }
+    //     }
+    // }
+    .vux-label-desc{
+        font-size: 24/@base;
+    }
+    .weui-cell_access .weui-cell__ft:after{
+        [data-dpr="2"] & {
+            height: 18/@base;
+            width: 18/@base;
+            margin-top: -9/@base;
+        }
+    }
+    .vux-tap-active:active{
+        background: none;
+    }
+    .weui-cell__hd{
+        display: flex;
+        align-items: center;
+    }
+    .weui-cells__title{
+        font-size: inherit;
+        color: @font-color;
+        font-weight: bold;
+        padding: @global-padding/2 @global-padding;
+        margin:0;
+    }
+    .weui-dialog{
+        max-width: 80%;
+        .dpr(border-radius, 3px);
+    }
+}
+.weui-cells .vux-checker-box{
+    .vux-checker-item .weui-cell{
+        &:before{
+            display: block;
+        }
+    }
+    .vux-checker-item:first-child{
+        .weui-cell:before{
+            display: none;
+        }
+    }
+}
+.weui-cell_select .weui-cell__bd:after{
+    [data-dpr="2"] & {
+        zoom: 2;
+    }
+}
+.vux-icon-dot{
+    @size: 12/@base;
+    width: @size !important;
+    height: @size !important;
+    border-radius: 50% !important;
+}

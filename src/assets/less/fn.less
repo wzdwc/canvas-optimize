@@ -1,0 +1,60 @@
+.dpr(@attr, @value){
+  [data-dpr="1"] & {
+      @{attr}: @value;
+  }
+  [data-dpr="2"] & {
+      @{attr}: @value*2;
+  }
+}
+.font-dpr(@fontSize){
+  [data-dpr="1"] & {
+    font-size: @fontSize;
+  }
+  [data-dpr="2"] & {
+    font-size: @fontSize*2;
+  }
+}
+
+.height-dpr(@heightSize){
+  [data-dpr="1"] & {
+    height: @heightSize;
+  }
+  [data-dpr="2"] & {
+    height: @heightSize*2;
+  }
+}
+
+.width-dpr(@widthSize){
+  [data-dpr="1"] & {
+    width: @widthSize;
+  }
+  [data-dpr="2"] & {
+    width: @widthSize*2;
+  }
+}
+
+.max-width-dpr(@maxWidthSize){
+  [data-dpr="1"] & {
+    max-width: @maxWidthSize;
+  }
+  [data-dpr="2"] & {
+    max-width: @maxWidthSize*2;
+  }
+}
+
+.border-dpr(@size, @color){
+  [data-dpr="1"] & {
+    border: @size solid @color;
+  }
+  [data-dpr="2"] & {
+    border: @size*2 solid @color;
+  }
+}
+
+.text-line(@number){
+  word-break:break-all;
+  display:-webkit-box;
+  -webkit-line-clamp:@number;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
