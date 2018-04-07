@@ -48,7 +48,7 @@
 当你改变 context 的若干状态，而几乎所有的渲染操作，最终的效果与 context 本身的状态有关系。
 所以，调用canvas API也会导致性能上都开销。那么具体哪些API都开销比较大呢。
 我们来看看网友提供都这张图：
-![Canvas API 消耗](http://img.alicdn.com/tps/TB1i6rMLpXXXXaZXFXXXXXXXXXX-593-323.png)
+![Canvas API 消耗](http://vlambda.com/img?url=http://mmbiz.qpic.cn/mmbiz/meG6Vo0MeviasMJGOO597rwXeuicNmMW7No21Nibmt0ubcQDYueticgPGQ9kD5g47hGAw02T99RibRVibBiatePnBrRuQ/0?wx_fmt=jpeg)
 从上图可以看出，API消耗也上有大小之分的，我们应该"避重就轻"，调整调用顺序，与调用的频率
 
 ### 优化
@@ -149,7 +149,7 @@ for (var i = 0; i < STRIPES/2; i++) {
 }    
 ```
 下面的性能测试用例分别用上边两种方法绘制了一副交错的细条纹图案：
-![交错渲染对比](http://vlambda.com/img?url=http://mmbiz.qpic.cn/mmbiz/meG6Vo0MeviasMJGOO597rwXeuicNmMW7No21Nibmt0ubcQDYueticgPGQ9kD5g47hGAw02T99RibRVibBiatePnBrRuQ/0?wx_fmt=jpeg)
+![交错渲染对比](http://img.my.csdn.net/uploads/201203/29/1333008831_6552.png)
 正如我们预期的，交错改变状态的方法要慢的多，原因是变化状态机是有额外开销的。
 
 
