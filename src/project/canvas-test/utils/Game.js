@@ -9,6 +9,11 @@ function getRandom(a, b) {
 }
 let rafId = null
 export default class Game {
+    /**
+     * Create a game.
+     * @param {number} useCache - 是否使用缓存.
+     * @param {object} canvas - canvas对象.
+     */
     constructor(canvas, useCache) {
         this.canvas = canvas
         this.balls = []
@@ -17,7 +22,9 @@ export default class Game {
         this.ctx = this.canvas.getContext('2d')
         this.play = true
     }
-
+    /**
+     * 初始化
+     */
     init() {
         this.balls = []
         cancelAnimationFrame(rafId)
@@ -28,7 +35,10 @@ export default class Game {
             this.balls.push(b)
         }
     }
-
+    /**
+     * 增加球的数量
+     * @param {number} size - 数量.
+     */
     add(size) {
         for (let i = 0; i < size; i++) {
             let b = new Ball(getRandom(0, this.canvas.width),
@@ -37,14 +47,18 @@ export default class Game {
             this.balls.push(b)
         }
     }
-
+    /**
+     * 更新画布
+     */
     update() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         for (let i = 0; i < this.balls.length; i++) {
             this.balls[i].move()
         }
     }
-
+    /**
+     * 循环绘制
+     */
     loop() {
         if (this.play) {
             let _this = this
@@ -54,9 +68,15 @@ export default class Game {
             })
         }
     }
+    /**
+     * 停止动画
+     */
     stop() {
         this.play = false
     }
+    /**
+     * 开始动画
+     */
     start() {
         this.init()
         this.loop()

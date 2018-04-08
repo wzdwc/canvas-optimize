@@ -9,17 +9,20 @@ function getRandom(a, b) {
 
 // 取整
 function getInt(num) {
-    var rounded
-    rounded = (0.5 + num) | 0
-    // A double bitwise not.
-    rounded = ~~(0.5 + num)
-    // Finally, a left bitwise shift.
-    rounded = (0.5 + num) << 0
-
-    return rounded
+    return (0.5 + num) << 0
 }
 
 export default class Ball {
+    /**
+     * Create a ball.
+     * @param {number} x - x坐标值
+     * @param {number} y - y坐标值
+     * @param {number} vy - 移动速度y坐标增量
+     * @param {number} vx - 移动速度x坐标增量
+     * @param {number} useCache - 是否使用缓存.
+     * @param {number} borderWidth - 每个环的宽度.
+     * @param {object} canvas - canvas对象.
+     */
     constructor(x, y, vx, vy, useCache, borderWidth, canvas) {
         this.x = x
         this.y = y
@@ -44,7 +47,10 @@ export default class Ball {
             this.cache()
         }
     }
-
+    /**
+     * 绘制
+     * @param {object} ctx - canvas上下文
+     */
     paint(ctx) {
         if (!this.useCache) {
             ctx.save()
@@ -62,7 +68,9 @@ export default class Ball {
             ctx.drawImage(this.cacheCanvas, this.x - this.r, this.y - this.r)
         }
     }
-
+    /**
+     * 缓存
+     */
     cache() {
         this.cacheCtx.save()
         let j = 0
@@ -76,6 +84,9 @@ export default class Ball {
         }
         this.cacheCtx.restore()
     }
+    /**
+     * 移动
+     */
     move() {
         this.x += this.vx
         this.y += this.vy
