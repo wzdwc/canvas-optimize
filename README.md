@@ -187,11 +187,35 @@ function getInt(num){
 - 在用户没有盯着游戏时减少客户机上的工作量
 - 节省移动设备上的用电。
 - 如果更新循环与呈现循环有关联，那么可以有效地暂停游戏
+兼容实现与关闭自动渲染：
+```
+(function() {
+    let lastTime = 0
+    let vendors = ['webkit', 'moz']
+    for (let x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame']
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // name has changed in Webkit
+            window[vendors[x] + 'CancelRequestAnimationFrame']
+    }
 
-
-更多：
-- [requestAnimationFrame for Smart Animating](https://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)
-- [css3-animation-requestanimationframe-tween-动画算法](http://www.zhangxinxu.com/wordpress/2013/09/css3-animation-requestanimationframe-tween-%E5%8A%A8%E7%94%BB%E7%AE%97%E6%B3%95/)
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = callback => {
+            let currTime = new Date().getTime()
+            let timeToCall = Math.max(0, 16.7 - (currTime - lastTime))
+            let id = window.setTimeout(() => {
+                callback(currTime + timeToCall)
+            }, timeToCall)
+            lastTime = currTime + timeToCall
+            return id
+        }
+    }
+    if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = id => {
+            clearTimeout(id)
+        }
+    }
+}())
+```
 
 ## 总结
 
@@ -211,10 +235,13 @@ function getInt(num){
 - 使用不同的办法去清除画布(clearRect() vs. fillRect() vs. 调整canvas大小)
 - 请谨慎使用大型物理库
 - 避免「阻塞」
+
 ### 优化小工具
 - [chrome devTools](https://developers.google.com/web/tools/chrome-devtools/?hl=zh-cn)
 - [jsperf](https://jsperf.com/)
  
-   
-
-
+### 相关 
+- [webkit源码分析之canvas](https://blog.csdn.net/lihui130135/article/details/8111239)
+- [理解webkit和chromiun：canvas2D实现](https://blog.csdn.net/milado_nju/article/details/7293012)
+- [requestAnimationFrame for Smart Animating](https://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)
+- [css3-animation-requestanimationframe-tween-动画算法](http://www.zhangxinxu.com/wordpress/2013/09/css3-animation-requestanimationframe-tween-%E5%8A%A8%E7%94%BB%E7%AE%97%E6%B3%95/)
