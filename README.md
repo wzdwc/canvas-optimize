@@ -49,7 +49,7 @@
 
 我们知道几乎canvas API所有都是在context上调用的。然而可能并不是很清楚context是一个状态机。
 当你改变 context 的若干状态，而几乎所有的渲染操作，最终的效果与 context 本身的状态有关系。
-所以，调用canvas API也会导致性能上都开销。那么具体哪些API都开销比较大呢。
+所以，调用canvas API也会导致性能上的开销。那么具体哪些API的开销比较大呢。
 我们来看看网友提供的这张图：
 ![Canvas API 消耗](http://vlambda.com/img?url=http://mmbiz.qpic.cn/mmbiz/meG6Vo0MeviasMJGOO597rwXeuicNmMW7No21Nibmt0ubcQDYueticgPGQ9kD5g47hGAw02T99RibRVibBiatePnBrRuQ/0?wx_fmt=jpeg)
 从上图可以看出，API消耗也上有大小之分的，我们应该"避重就轻"，调整调用顺序，与调用的频率
